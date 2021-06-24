@@ -4,4 +4,5 @@ class MainRepository constructor(private val jsonPlaceHolderApi: JsonPlaceHolder
     fun getFeaturedList() = jsonPlaceHolderApi.getFeaturedList()
     fun getBrands() = jsonPlaceHolderApi.getBrands()
     fun getDiscounts( active:Boolean) = jsonPlaceHolderApi.getDiscounts(active)
+    fun getCategory()=jsonPlaceHolderApi.getCategory()
 }

@@ -1,10 +1,7 @@
 package hamidov.sardor.goodzone.retrofit
 
 import hamidov.sardor.goodzone.common.Constants
-import hamidov.sardor.goodzone.models.Banner
-import hamidov.sardor.goodzone.models.Brands
-import hamidov.sardor.goodzone.models.FeaturedList
-import hamidov.sardor.goodzone.models.Promo
+import hamidov.sardor.goodzone.models.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -27,6 +24,9 @@ interface JsonPlaceHolderApi {
     fun getDiscounts(
         @Query("active") active:Boolean
     ):Call<Promo>
+
+    @GET("v1/category")
+    fun getCategory():Call<Categories>
 
     companion object {
         var jsonPlaceHolderApi: JsonPlaceHolderApi? = null
