@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,8 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import hamidov.sardor.goodzone.R
+import hamidov.sardor.goodzone.common.Constants
 import hamidov.sardor.goodzone.databinding.HomeFagmentBinding
 import hamidov.sardor.goodzone.main.home.adapters.*
+import hamidov.sardor.goodzone.main.home.allItem.ItemFragment
+import hamidov.sardor.goodzone.models.Promo
 import hamidov.sardor.goodzone.models.PromoX
 import hamidov.sardor.goodzone.retrofit.JsonPlaceHolderApi
 import hamidov.sardor.goodzone.retrofit.MainRepository
@@ -32,7 +37,7 @@ class HomeFagment : Fragment() {
     private lateinit var binding: HomeFagmentBinding
     private val jsonPlaceHolderApi = JsonPlaceHolderApi.getInstance()
 
-    private var sliderHandler:Handler = Handler()
+    private var sliderHandler: Handler = Handler()
     private val promotionsAdapter = PromotionsAdapter()
     private val famousAdapter = FamousAdapter()
     private val newsAdapter = NewsAdapter()
@@ -74,22 +79,35 @@ class HomeFagment : Fragment() {
         }
         binding.homeBanner.setPageTransformer(compositePageTransformer)
 
-        binding.homeBanner.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+        binding.homeBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable,3000)
+                sliderHandler.postDelayed(sliderRunnable, 3000)
             }
         })
     }
 
     @SuppressLint("UseRequireInsteadOfGet")
     private fun setDiscounts() {
+
+
         binding.rvPromotion.setHasFixedSize(true)
         binding.rvPromotion.adapter = promotionsAdapter
-        viewModel.discounts.observe(viewLifecycleOwner, Observer {
-            promotionsAdapter.setDiscountList(it.promos)
-            binding.homeBanner.adapter = BannerAdapter(it.promos as ArrayList<PromoX>, binding.homeBanner)
+        viewModel.discounts.observe(viewLifecycleOwner, Observer { promo: Promo ->
+            promotionsAdapter.setDiscountList(promo.promos)
+            binding.homeBanner.adapter =
+                BannerAdapter(promo.promos as ArrayList<PromoX>, binding.homeBanner)
+            Constants.promotions = promo.promos
+            binding.promotionsAll.setOnClickListener {
+                val bundle = bundleOf(
+                    "data" to promo.promos,
+                    "title" to binding.promotionsTitle.text,
+                    "num" to "promotion"
+                )
+                switchToFragment(ItemFragment(), bundle)
+            }
+
 
         })
         viewModel.getDiscounts()
@@ -121,13 +139,38 @@ class HomeFagment : Fragment() {
                     0 -> {
                         binding.famousTitle.text = it.featured_lists[i].title
                         famousAdapter.setProductList(it.featured_lists[i].products)
+                        Constants.famous = it.featured_lists[i].products
+                        binding.famousAll.setOnClickListener {
+                            val bundle = bundleOf(
+                                "title" to binding.famousTitle.text,
+                                "num" to "famous"
+                            )
+                            switchToFragment(ItemFragment(), bundle)
+                        }
+
                     }
                     1 -> {
                         binding.newsTitle.text = it.featured_lists[i].title
                         newsAdapter.setProductList(it.featured_lists[i].products)
+                        Constants.newsList = it.featured_lists[i].products
+                        binding.newsAll.setOnClickListener {
+                            val bundle = bundleOf(
+                                "title" to binding.newsTitle.text,
+                                "num" to "news"
+                            )
+                            switchToFragment(ItemFragment(), bundle)
+                        }
                     }
                     2 -> {
                         binding.recommendedTitle.text = it.featured_lists[i].title
+                        Constants.recommended = it.featured_lists[i].products
+                        binding.recommendedAll.setOnClickListener {
+                            val bundle = bundleOf(
+                                "title" to binding.recommendedTitle.text,
+                                "num" to "recom"
+                            )
+                            switchToFragment(ItemFragment(), bundle)
+                        }
                         recommendedAdapter.setProductList(it.featured_lists[i].products)
                     }
                 }
@@ -140,8 +183,8 @@ class HomeFagment : Fragment() {
         viewModel.getFeaturesList()
     }
 
-    private var  sliderRunnable:Runnable = Runnable {
-        binding.homeBanner.setCurrentItem(binding.homeBanner.currentItem +1)
+    private var sliderRunnable: Runnable = Runnable {
+        binding.homeBanner.setCurrentItem(binding.homeBanner.currentItem + 1)
     }
 
     override fun onPause() {
@@ -151,7 +194,12 @@ class HomeFagment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        sliderHandler.postDelayed(sliderRunnable,3000)
+        sliderHandler.postDelayed(sliderRunnable, 3000)
+    }
+
+    private fun switchToFragment(fragment: Fragment, bundle: Bundle) {
+        fragmentManager!!.beginTransaction()
+            .replace(R.id.nav_host_fragment_content_main, fragment::class.java, bundle).commit()
     }
 }
 
