@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import hamidov.sardor.goodzone.R
 import hamidov.sardor.goodzone.databinding.SearchFragmentBinding
-import hamidov.sardor.goodzone.main.home.HomeFagmentViewModel
-import hamidov.sardor.goodzone.main.home.HomeFragmentViewModelFactory
 import hamidov.sardor.goodzone.main.search.adapter.SearchAdapter
 import hamidov.sardor.goodzone.retrofit.JsonPlaceHolderApi
 import hamidov.sardor.goodzone.retrofit.MainRepository
@@ -40,6 +37,8 @@ class SearchFragment : Fragment() {
             SearchFragmentViewModelFactory(MainRepository(jsonPlaceHolderApi))
         ).get(SearchViewModel::class.java)
         setup()
+        searching()
+        binding.vm = viewModel
     }
 
     private fun setup() {
@@ -49,6 +48,18 @@ class SearchFragment : Fragment() {
             adapter.setProductList(it.categories)
         })
         viewModel.getCategoryList()
+    }
+
+    private fun searching(){
+        viewModel.searchText.observe(viewLifecycleOwner, Observer {
+            viewModel.getCategoryList(it)
+        })
+        viewModel.result.observe(viewLifecycleOwner, Observer {
+            if (it.count.toInt() > 0){
+                adapter.setProductList(it.categories)
+            }
+            adapter.notifyDataSetChanged()
+        })
     }
 
 }

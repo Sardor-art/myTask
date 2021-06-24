@@ -27,7 +27,10 @@ interface JsonPlaceHolderApi {
 
     @GET("v1/category")
     fun getCategory():Call<Categories>
-
+    @GET("v1/category")
+    fun getCategory(
+        @Query("search") search:String
+    ):Call<Categories>
     companion object {
         var jsonPlaceHolderApi: JsonPlaceHolderApi? = null
 

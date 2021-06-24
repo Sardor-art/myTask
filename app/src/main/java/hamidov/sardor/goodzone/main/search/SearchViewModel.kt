@@ -10,12 +10,26 @@ import retrofit2.Response
 
 class SearchViewModel constructor(private val repository: MainRepository): ViewModel() {
     val category = MutableLiveData<Categories>()
-
+    val result = MutableLiveData<Categories>()
+    var searchText = MutableLiveData<String>()
     fun getCategoryList(){
         val response = repository.getCategory()
         response.enqueue(object : Callback<Categories> {
             override fun onResponse(call: Call<Categories>, response: Response<Categories>) {
                 category.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<Categories>, t: Throwable) {
+
+            }
+
+        })
+    }
+    fun getCategoryList(search:String){
+        val response = repository.getCategory(search)
+        response.enqueue(object : Callback<Categories> {
+            override fun onResponse(call: Call<Categories>, response: Response<Categories>) {
+                result.postValue(response.body())
             }
 
             override fun onFailure(call: Call<Categories>, t: Throwable) {

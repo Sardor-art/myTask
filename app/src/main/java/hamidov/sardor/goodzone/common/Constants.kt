@@ -6,12 +6,11 @@ import hamidov.sardor.goodzone.main.home.adapters.FamousAdapter
 import hamidov.sardor.goodzone.main.home.adapters.NewsAdapter
 import hamidov.sardor.goodzone.main.home.adapters.PromotionsAdapter
 import hamidov.sardor.goodzone.main.home.adapters.RecommendedAdapter
-import hamidov.sardor.goodzone.models.Product
-import hamidov.sardor.goodzone.models.Promo
-import hamidov.sardor.goodzone.models.PromoX
+import hamidov.sardor.goodzone.models.*
 import hamidov.sardor.goodzone.retrofit.JsonPlaceHolderApi
 
 object Constants {
+    var searchResult: List<CategoryX>? = null
     var height = 1920
     var width = 1080
     val BASE_URL = "https://dev.goodzone.uz/"
