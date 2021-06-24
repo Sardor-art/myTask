@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFagment"
+    >
+
+    <fragment
+        android:id="@+id/homeFagment"
+        android:name="hamidov.sardor.goodzone.main.home.HomeFagment"
+        android:label="home_fagment"
+        tools:layout="@layout/home_fagment" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="hamidov.sardor.goodzone.main.fav.FavoriteFragment"
+        android:label="favorite_fragment"
+        tools:layout="@layout/favorite_fragment" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="hamidov.sardor.goodzone.main.cart.CartFragment"
+        android:label="cart_fragment"
+        tools:layout="@layout/shopping_fragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="hamidov.sardor.goodzone.main.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="hamidov.sardor.goodzone.main.search.SearchFragment"
+        android:label="search_fragment"
+        tools:layout="@layout/search_fragment" />
+</navigation>

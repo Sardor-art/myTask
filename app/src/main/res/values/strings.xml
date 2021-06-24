@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">GoodZone</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_category">Category</string>
+    <string name="menu_fav">Favorite</string>
+    <string name="menu_profile">Profile</string>
+    <string name="promotions">Promotions</string>
+    <string name="all">All</string>
+    <string name="famous">Famous</string>
+    <string name="title">Title</string>
+    <string name="recommended">Recommended</string>
+    <string name="name">Name</string>
+    <string name="lastname">Lastname</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="signin">Sign In</string>
+    <string name="checkout">Checkout</string>
+    <string name="product_amount">Product amount</string>
+    <string name="delivery_amount">Delivery amount</string>
+    <string name="total_amount">Total amount</string>
+</resources>

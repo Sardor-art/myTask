@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GoodZone</string>
+    <string name="menu_home">Главный</string>
+    <string name="menu_search">Каталог</string>
+    <string name="menu_category">Корзина</string>
+    <string name="menu_fav">Избранное</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="promotions">Акции</string>
+    <string name="all">Все</string>
+    <string name="famous">Популярный</string>
+    <string name="title">Заголовок</string>
+    <string name="recommended">Рекомендуемые</string>
+    <string name="name">Имя</string>
+    <string name="lastname">Фамилия</string>
+    <string name="phone">Телефон</string>
+    <string name="password">Пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="forgot_password">Забыл пароль</string>
+    <string name="confirm_password">Подтвердить Пароль</string>
+    <string name="signin">Войти</string>
+    <string name="checkout">Оформление</string>
+    <string name="product_amount">Сумма товара</string>
+    <string name="delivery_amount">Сумма доставки</string>
+    <string name="total_amount">Итоги сумма</string>
+</resources>

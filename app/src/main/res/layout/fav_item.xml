@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="@dimen/dimen_10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_favItem"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_0dp"
+        android:background="@drawable/bg_fav_item"
+        app:cardCornerRadius="@dimen/dimen_8dp"
+        app:cardElevation="@dimen/dimen_0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_favItem_type"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_fav_item"
+            android:padding="@dimen/dimen_2dp">
+
+            <ImageView
+                android:id="@+id/iv_favItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_category_5" />
+
+            <ImageButton
+                android:id="@+id/btn_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:background="@drawable/bg_fav_btn"
+                android:padding="@dimen/dimen_5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_favorites"
+                app:tint="@color/red"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/fav_itemOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:background="@drawable/bg_fav_off_text"
+                android:paddingStart="@dimen/dimen_2dp"
+                android:paddingTop="@dimen/dimen_2dp"
+                android:paddingEnd="@dimen/dimen_6dp"
+                tools:text="-12%"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_11sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SmallSp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_favItem_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginBottom="@dimen/dimen_1dp"
+        android:text="Смартфоны и телефоны"
+        android:textSize="@dimen/dimen_12sp"
+        app:layout_constraintBottom_toTopOf="@+id/name_item"
+        app:layout_constraintStart_toStartOf="@+id/cv_favItem"
+        app:layout_constraintTop_toBottomOf="@+id/cv_favItem" />
+
+    <TextView
+        android:id="@+id/name_item"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginBottom="@dimen/dimen_1dp"
+        android:inputType="textMultiLine"
+        android:text="Смартфон Samsung Galaxy S10 G973X"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/price_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_favItem_type" />
+
+    <TextView
+        android:id="@+id/price_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6dp"
+        android:text="6 224 250 сум"
+        android:textColor="@color/red"
+        android:textSize="@dimen/dimen_16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_item" />
+</androidx.constraintlayout.widget.ConstraintLayout>
